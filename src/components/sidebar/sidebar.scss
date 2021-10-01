@@ -1,0 +1,95 @@
+$text-color-secondary: #a9aeb8;
+$text-color-primary: #0d2e5e;
+
+.nav {
+  max-width: 400px;
+  width: 40%;
+  padding: 0 2rem;
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+
+    &_icon {
+      fill: $text-color-secondary;
+    }
+    &_title {
+      color: $text-color-primary;
+      font-size: 2rem;
+      padding: 2rem 1rem;
+    }
+  }
+
+  &-search {
+    position: relative;
+    margin-bottom: 1rem;
+    &_field {
+      width: 100%;
+      font-size: 2rem;
+      color: $text-color-secondary;
+      padding: 0.25em 0;
+      border: none;
+      border-bottom: 1px solid;
+    }
+    &_icon {
+      position: absolute;
+      right: 0%;
+      top: 50%;
+      font-size: 2rem;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &-filter {
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  //Single Card
+
+  .card {
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    &-img {
+      width: 5rem;
+      height: 5rem;
+      object-fit: cover;
+      border-radius: 1rem;
+      margin-right: 1rem;
+    }
+    &-info {
+      margin-right: auto;
+
+      &_heading {
+        color: $text-color-primary;
+        font-size: 2rem;
+      }
+      &_secondary {
+        display: flex;
+        &_miles {
+          color: $text-color-secondary;
+          font-size: 1.2rem;
+          padding-right: 1rem;
+        }
+        &_time {
+          color: $text-color-primary;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: rgba(225, 219, 219, 0.605);
+      transition: all 0.4s;
+    }
+  }
+}
