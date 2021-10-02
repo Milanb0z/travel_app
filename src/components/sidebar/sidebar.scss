@@ -13,6 +13,7 @@ $text-color-primary: #0d2e5e;
 
     &_icon {
       fill: $text-color-secondary;
+      cursor: pointer;
     }
     &_title {
       color: $text-color-primary;
@@ -59,6 +60,8 @@ $text-color-primary: #0d2e5e;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    transition: all 0.4s;
+
     &-img {
       width: 5rem;
       height: 5rem;

@@ -1,7 +1,7 @@
 import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
 import "./sidebar.scss";
 
-const Sidebar = () => {
+const Sidebar = ({ onFormSubmit }) => {
   return (
     <div className="nav">
       <div className="nav-header">
@@ -10,7 +10,7 @@ const Sidebar = () => {
         <BiInfoCircle className="nav-header_icon" />
       </div>
       <div className="nav-search">
-        <form>
+        <form onSubmit={onFormSubmit}>
           <input
             type="text"
             placeholder="Search..."

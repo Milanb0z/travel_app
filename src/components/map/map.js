@@ -1,8 +1,12 @@
 import GoogleMapReact from "google-map-react";
+import { plugins } from "pretty-format";
 import Marker from "../marker/marker";
 import "./map.scss";
 
-const Map = () => {
+const Map = ({ pins }) => {
+  const onDaggingMap = (event) => {
+    console.log(event);
+  };
   return (
     <div className="mapbox">
       <GoogleMapReact
@@ -11,9 +15,16 @@ const Map = () => {
           lat: 59.95,
           lng: 30.33,
         }}
+        onDragEnd={onDaggingMap}
         defaultZoom={11}
       >
-        <Marker lat={59.955413} lng={30.337844} text="My Marker" />
+        {pins.map((pin) => (
+          <Marker
+            lat={pin.latitude}
+            lng={pin.longitude}
+            text={pin.location_string}
+          />
+        ))}
       </GoogleMapReact>
     </div>
   );
