@@ -1,7 +1,8 @@
 import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
+import LoadingSpinner from "../../loadingSpinner/loadingSpinner";
 import "./sidebar.scss";
 
-const Sidebar = () => {
+const Sidebar = ({ places, isloading }) => {
   return (
     <div className="nav">
       <div className="nav-header">
@@ -20,52 +21,34 @@ const Sidebar = () => {
         </form>
       </div>
       <div className="nav-filter">filter me daddy</div>
-      <div className="nav-list">
-        <div className="card">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVIXoZvwRhL_KYkaisIujJ9z3BbxDvYyB0TDjxo6aeHbB-8m6HalR73WApUELEpPLHvk&usqp=CAU"
-            alt=""
-            className="card-img"
-          />
-          <div className="card-info">
-            <h2 className="card-info_heading">Mcdonalds - Kraljevo</h2>
-            <div className="card-info_secondary">
-              <p className="card-info_secondary_miles">0.1mi</p>
-              <p className="card-info_secondary_time">Open 'till 6pm</p>
-            </div>
-          </div>
+      {isloading ? (
+        <div className="nav-loading">
+          <LoadingSpinner />
         </div>
-
-        <div className="card">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVIXoZvwRhL_KYkaisIujJ9z3BbxDvYyB0TDjxo6aeHbB-8m6HalR73WApUELEpPLHvk&usqp=CAU"
-            alt=""
-            className="card-img"
-          />
-          <div className="card-info">
-            <h2 className="card-info_heading">Mcdonalds - Kraljevo</h2>
-            <div className="card-info_secondary">
-              <p className="card-info_secondary_miles">0.1mi</p>
-              <p className="card-info_secondary_time">Open 'till 6pm</p>
+      ) : (
+        <div className="nav-list">
+          {places.map((place) => (
+            <div className="card" key={place.location_id}>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVIXoZvwRhL_KYkaisIujJ9z3BbxDvYyB0TDjxo6aeHbB-8m6HalR73WApUELEpPLHvk&usqp=CAU"
+                alt=""
+                className="card-img"
+              />
+              <div className="card-info">
+                <h2 className="card-info_heading">{place.name}</h2>
+                <div className="card-info_secondary">
+                  <p className="card-info_secondary_miles">
+                    {place.distance_string}
+                  </p>
+                  <p className="card-info_secondary_time">
+                    {places.is_closed ? "Closed" : "Open"}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-
-        <div className="card">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVIXoZvwRhL_KYkaisIujJ9z3BbxDvYyB0TDjxo6aeHbB-8m6HalR73WApUELEpPLHvk&usqp=CAU"
-            alt=""
-            className="card-img"
-          />
-          <div className="card-info">
-            <h2 className="card-info_heading">Mcdonalds - Kraljevo</h2>
-            <div className="card-info_secondary">
-              <p className="card-info_secondary_miles">0.1mi</p>
-              <p className="card-info_secondary_time">Open 'till 6pm</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

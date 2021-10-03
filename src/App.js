@@ -11,6 +11,7 @@ const App = () => {
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
   const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -30,12 +31,19 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     getPlacesData()
       .then((data) => {
         setPins(data);
+        console.log(data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
+        setIsError({
+          message: "Ooops, we have some problems please try again later :(",
+        });
+        setIsLoading(false);
       });
   }, []);
 
@@ -45,7 +53,7 @@ const App = () => {
         <Error0verlay setIsError={setIsError} message={isError.message} />
       )}
       <Map setCoords={setCoords} setBounds={setBounds} coords={coords} />
-      <Sidebar />
+      <Sidebar isloading={isLoading} places={pins} />
     </section>
   );
 };

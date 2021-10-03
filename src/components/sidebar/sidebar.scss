@@ -5,6 +5,9 @@ $text-color-primary: #0d2e5e;
   max-width: 400px;
   width: 40%;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+
   &-header {
     display: flex;
     align-items: center;
@@ -48,6 +51,12 @@ $text-color-primary: #0d2e5e;
   &-list {
     display: flex;
     flex-direction: column;
+  }
+
+  &-loading {
+    flex: 1;
+    display: grid;
+    place-items: center;
   }
 
   //Single Card
