@@ -1,49 +1,51 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 
+import { getPlacesData } from "./api/index.js";
 import Map from "./components/map/map.js";
 import Sidebar from "./components/sidebar/sidebar.js";
 import "./App.scss";
+import Error0verlay from "./components/errorOverlay/error0verlay.js";
 
 const App = () => {
   const [pins, setPins] = useState([]);
+  const [coords, setCoords] = useState({});
+  const [bounds, setBounds] = useState(null);
+  const [isError, setIsError] = useState(null);
 
-  const onNearbySearch = async (e) => {
-    e.preventDefault();
-    const options = {
-      params: {
-        bl_latitude: "11.847676",
-        tr_latitude: "12.838442",
-        bl_longitude: "109.095887",
-        tr_longitude: "109.149359",
-        restaurant_tagcategory_standalone: "10591",
-        restaurant_tagcategory: "10591",
-        limit: "30",
-        currency: "USD",
-        open_now: "false",
-        lunit: "km",
-        lang: "en_US",
-      },
-      headers: {
-        "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
-        "x-rapidapi-key": process.env.REACT_APP_RAPID_API,
-      },
-    };
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) => {
+          setCoords({ lat: latitude, lng: longitude });
+        },
+        () => {
+          setIsError({ message: "Please you need to enable location" });
+        }
+      );
+    } else {
+      setIsError({
+        message: "Please choose another browser that support user location",
+      });
+    }
+  }, []);
 
-    const { data } = await axios.get(
-      "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary",
-      options
-    );
-
-    console.log(data.data);
-
-    setPins([...data.data]);
-  };
+  useEffect(() => {
+    getPlacesData()
+      .then((data) => {
+        setPins(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <section className="main">
-      <Map pins={pins} />
-      <Sidebar onFormSubmit={onNearbySearch} />
+      {isError && (
+        <Error0verlay setIsError={setIsError} message={isError.message} />
+      )}
+      <Map setCoords={setCoords} setBounds={setBounds} coords={coords} />
+      <Sidebar />
     </section>
   );
 };

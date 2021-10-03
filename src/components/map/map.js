@@ -1,31 +1,20 @@
 import GoogleMapReact from "google-map-react";
-import { plugins } from "pretty-format";
-import Marker from "../marker/marker";
 import "./map.scss";
 
-const Map = ({ pins }) => {
-  const onDaggingMap = (event) => {
-    console.log(event);
-  };
+const Map = ({ setCoords, setBounds, coords }) => {
   return (
     <div className="mapbox">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
-        defaultCenter={{
-          lat: 59.95,
-          lng: 30.33,
-        }}
-        onDragEnd={onDaggingMap}
+        center={coords}
+        defaultCenter={{ lat: 0, lng: 0 }}
         defaultZoom={11}
-      >
-        {pins.map((pin) => (
-          <Marker
-            lat={pin.latitude}
-            lng={pin.longitude}
-            text={pin.location_string}
-          />
-        ))}
-      </GoogleMapReact>
+        margin={[50, 50, 50, 50]}
+        onChange={(event) => {
+          setCoords({ lat: event.center.lat, lng: event.center.lng });
+          setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
+        }}
+      ></GoogleMapReact>
     </div>
   );
 };

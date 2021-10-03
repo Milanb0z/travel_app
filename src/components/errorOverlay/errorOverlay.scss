@@ -1,0 +1,41 @@
+.errorMessage {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  &_modal {
+    background-color: white;
+
+    z-index: 1200;
+    max-width: 500px;
+    width: 80%;
+
+    &_text {
+      padding: 2rem 1rem;
+    }
+
+    &_heading {
+      background-color: red;
+      color: white;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+
+      &_title {
+      }
+
+      &_icon {
+        fill: white;
+      }
+    }
+  }
+  &_overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    inset: 0;
+    z-index: 1100;
+  }
+}
