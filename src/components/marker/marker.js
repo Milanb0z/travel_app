@@ -1,7 +1,7 @@
 import "./marker.scss";
 
-const marker = () => {
-  return <div className="marker"></div>;
+const marker = ({ isHidden }) => {
+  return <div className={`marker ${isHidden && "hidden"}`}></div>;
 };
 
 export default marker;

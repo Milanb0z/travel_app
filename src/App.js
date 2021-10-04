@@ -38,7 +38,6 @@ const App = () => {
     getPlacesData(bounds)
       .then((data) => {
         setPins(data);
-        console.log(data);
         setIsLoading(false);
       })
       .catch((error) => {

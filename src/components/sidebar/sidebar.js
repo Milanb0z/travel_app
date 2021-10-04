@@ -3,7 +3,7 @@ import LoadingSpinner from "../../loadingSpinner/loadingSpinner";
 import "./sidebar.scss";
 import SidebarItem from "./sidebarItem/sidebarItem";
 
-const Sidebar = ({ places, isloading }) => {
+const Sidebar = ({ places = [], isloading }) => {
   return (
     <div className="nav">
       <div className="nav-header">
@@ -28,9 +28,16 @@ const Sidebar = ({ places, isloading }) => {
         </div>
       ) : (
         <div className="nav-list">
-          {places.map((place) => (
-            <SidebarItem data={place} key={place.location_id} />
-          ))}
+          {places.length === 0 ? (
+            <h2>No results :(</h2>
+          ) : (
+            places.map((place, index) => (
+              <SidebarItem
+                data={place}
+                key={`${index}sideitem${place.location_id}`}
+              />
+            ))
+          )}
         </div>
       )}
     </div>
