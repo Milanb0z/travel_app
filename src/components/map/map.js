@@ -1,7 +1,8 @@
 import GoogleMapReact from "google-map-react";
+import Marker from "../marker/marker.js";
 import "./map.scss";
 
-const Map = ({ setCoords, setBounds, coords }) => {
+const Map = ({ setCoords, setBounds, coords, places }) => {
   return (
     <div className="mapbox">
       <GoogleMapReact
@@ -14,7 +15,19 @@ const Map = ({ setCoords, setBounds, coords }) => {
           setCoords({ lat: event.center.lat, lng: event.center.lng });
           setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
         }}
-      ></GoogleMapReact>
+      >
+        {places.map((place) => {
+          console.log(place);
+          return (
+            <Marker
+              key={place.locaiton_id}
+              lat={place.latitude}
+              lng={place.longitude}
+              text={place.name}
+            />
+          );
+        })}
+      </GoogleMapReact>
     </div>
   );
 };

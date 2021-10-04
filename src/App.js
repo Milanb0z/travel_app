@@ -31,8 +31,11 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    if (!bounds) {
+      return;
+    }
     setIsLoading(true);
-    getPlacesData()
+    getPlacesData(bounds)
       .then((data) => {
         setPins(data);
         console.log(data);
@@ -45,14 +48,19 @@ const App = () => {
         });
         setIsLoading(false);
       });
-  }, []);
+  }, [bounds]);
 
   return (
     <section className="main">
       {isError && (
         <Error0verlay setIsError={setIsError} message={isError.message} />
       )}
-      <Map setCoords={setCoords} setBounds={setBounds} coords={coords} />
+      <Map
+        setCoords={setCoords}
+        setBounds={setBounds}
+        places={pins}
+        coords={coords}
+      />
       <Sidebar isloading={isLoading} places={pins} />
     </section>
   );

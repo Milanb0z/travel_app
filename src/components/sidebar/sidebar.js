@@ -1,6 +1,7 @@
 import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
 import LoadingSpinner from "../../loadingSpinner/loadingSpinner";
 import "./sidebar.scss";
+import SidebarItem from "./sidebarItem/sidebarItem";
 
 const Sidebar = ({ places, isloading }) => {
   return (
@@ -28,24 +29,7 @@ const Sidebar = ({ places, isloading }) => {
       ) : (
         <div className="nav-list">
           {places.map((place) => (
-            <div className="card" key={place.location_id}>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVIXoZvwRhL_KYkaisIujJ9z3BbxDvYyB0TDjxo6aeHbB-8m6HalR73WApUELEpPLHvk&usqp=CAU"
-                alt=""
-                className="card-img"
-              />
-              <div className="card-info">
-                <h2 className="card-info_heading">{place.name}</h2>
-                <div className="card-info_secondary">
-                  <p className="card-info_secondary_miles">
-                    {place.distance_string}
-                  </p>
-                  <p className="card-info_secondary_time">
-                    {places.is_closed ? "Closed" : "Open"}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <SidebarItem data={place} key={place.location_id} />
           ))}
         </div>
       )}
