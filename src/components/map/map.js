@@ -27,11 +27,10 @@ const Map = ({ setCoords, setBounds, coords, places = [] }) => {
             setIsDragging(false);
           }
         }}
-        onZoomStart={console.log("Zoom")}
-        onZoomStop={console.log("Zoom Stop")}
       >
         {places.map((place, index) => (
           <Marker
+            data={place}
             isHidden={isDragging}
             key={place.location_id + index}
             lat={place.latitude}

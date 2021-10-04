@@ -1,4 +1,5 @@
 import { GrClose } from "react-icons/gr";
+import ModalWrapper from "../../hoc/modalWrapper";
 import "./errorOverlay.scss";
 
 const error0verlay = ({ message, setIsError }) => {
@@ -7,7 +8,7 @@ const error0verlay = ({ message, setIsError }) => {
   };
 
   return (
-    <div className="errorMessage">
+    <ModalWrapper onCloseHandler={onCloseModal}>
       <div className="errorMessage_modal">
         <div className="errorMessage_modal_heading">
           <h2 className="errorMessage_modal_heading_title">Error</h2>
@@ -18,8 +19,7 @@ const error0verlay = ({ message, setIsError }) => {
         </div>
         <h2 className="errorMessage_modal_text">{message}</h2>
       </div>
-      <div className="errorMessage_overlay" onClick={onCloseModal}></div>
-    </div>
+    </ModalWrapper>
   );
 };
 

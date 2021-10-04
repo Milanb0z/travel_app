@@ -1,11 +1,14 @@
 import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
-import LoadingSpinner from "../../loadingSpinner/loadingSpinner";
+import LoadingSpinner from "../loadingSpinner/loadingSpinner";
 import "./sidebar.scss";
+import SidebarDetails from "./sidebarDetails/sidebarDetails";
 import SidebarItem from "./sidebarItem/sidebarItem";
 
-const Sidebar = ({ places = [], isloading }) => {
+const Sidebar = ({ places = [], isloading, onLocationSelect, selectedPin }) => {
   return (
     <div className="nav">
+      {selectedPin && <SidebarDetails />}
+
       <div className="nav-header">
         <BiArrowToRight className="nav-header_icon" />
         <h2 className="nav-header_title">traveller</h2>
@@ -29,10 +32,13 @@ const Sidebar = ({ places = [], isloading }) => {
       ) : (
         <div className="nav-list">
           {places.length === 0 ? (
-            <h2>No results :(</h2>
+            <div className="nav-loading">
+              <h2>No results :(</h2>
+            </div>
           ) : (
             places.map((place, index) => (
               <SidebarItem
+                onClick={onLocationSelect}
                 data={place}
                 key={`${index}sideitem${place.location_id}`}
               />

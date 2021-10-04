@@ -1,7 +1,7 @@
 import { BiRestaurant } from "react-icons/bi";
 import "./sidebarItem.scss";
 
-const sidebarItem = ({ data }) => {
+const sidebarItem = ({ data, onClick }) => {
   if (!data.name) {
     return null;
   }
@@ -21,7 +21,7 @@ const sidebarItem = ({ data }) => {
   }
 
   return (
-    <div className="sideCard">
+    <div className="sideCard" onClick={() => onClick(data)}>
       {image}
       <div className="sideCard-info">
         <h2 className="sideCard-info_heading">{data.name}</h2>

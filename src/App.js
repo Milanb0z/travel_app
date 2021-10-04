@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { getPlacesData } from "./api/index.js";
 import Map from "./components/map/map.js";
 import Sidebar from "./components/sidebar/sidebar.js";
-import "./App.scss";
 import Error0verlay from "./components/errorOverlay/error0verlay.js";
+import "./App.scss";
 
 const App = () => {
   const [pins, setPins] = useState([]);
@@ -12,6 +12,7 @@ const App = () => {
   const [bounds, setBounds] = useState(null);
   const [isError, setIsError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedPin, setSelectedPin] = useState(null);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -49,6 +50,10 @@ const App = () => {
       });
   }, [bounds]);
 
+  const onSelectPlace = (place) => {
+    setSelectedPin(place);
+  };
+
   return (
     <section className="main">
       {isError && (
@@ -60,7 +65,12 @@ const App = () => {
         places={pins}
         coords={coords}
       />
-      <Sidebar isloading={isLoading} places={pins} />
+      <Sidebar
+        selectedPin={selectedPin}
+        isloading={isLoading}
+        places={pins}
+        onLocationSelect={onSelectPlace}
+      />
     </section>
   );
 };
