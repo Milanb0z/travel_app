@@ -11,6 +11,7 @@ const Map = ({ setCoords, setBounds, coords, places = [] }) => {
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
         center={coords}
         defaultCenter={{ lat: 0, lng: 0 }}
+        options={{ disableDefaultUI: true }}
         defaultZoom={10}
         margin={[50, 50, 50, 50]}
         onChange={(event) => {
