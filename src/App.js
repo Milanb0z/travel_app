@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import { getPlacesData } from "./api/index.js";
 import Map from "./components/map/map.js";
@@ -56,9 +57,11 @@ const App = () => {
 
   return (
     <section className="main">
-      {isError && (
-        <Error0verlay setIsError={setIsError} message={isError.message} />
-      )}
+      <AnimatePresence>
+        {isError && (
+          <Error0verlay setIsError={setIsError} message={isError.message} />
+        )}
+      </AnimatePresence>
       <Map
         setCoords={setCoords}
         setBounds={setBounds}

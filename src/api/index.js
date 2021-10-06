@@ -19,6 +19,7 @@ export const getPlacesData = async (coords) => {
       data: { data },
     } = await axios.get(
       "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary",
+
       options
     );
 
