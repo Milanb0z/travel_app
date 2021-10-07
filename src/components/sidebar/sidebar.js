@@ -1,13 +1,15 @@
 import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
+import { AnimatePresence } from "framer-motion";
+
 import LoadingSpinner from "../loadingSpinner/loadingSpinner";
-import "./sidebar.scss";
 import SidebarDetails from "./sidebarDetails/sidebarDetails";
 import SidebarItem from "./sidebarItem/sidebarItem";
+import "./sidebar.scss";
 
 const Sidebar = ({ places = [], isloading, onLocationSelect, selectedPin }) => {
   return (
     <div className="nav">
-      {selectedPin && <SidebarDetails />}
+      <AnimatePresence>{selectedPin && <SidebarDetails />}</AnimatePresence>
 
       <div className="nav-header">
         <BiArrowToRight className="nav-header_icon" />
