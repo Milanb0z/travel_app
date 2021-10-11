@@ -14,14 +14,16 @@ $text-color-primary: #0d2e5e;
     align-items: center;
     justify-content: space-between;
     font-size: 2rem;
+    padding: 3rem 0 2rem;
 
     &_icon {
       fill: $text-color-secondary;
       cursor: pointer;
+      font-size: 3rem;
     }
     &_title {
       color: $text-color-primary;
-      font-size: 2rem;
+      font-size: 2.4rem;
       padding: 2rem 1rem;
     }
   }
@@ -31,7 +33,7 @@ $text-color-primary: #0d2e5e;
     margin-bottom: 1rem;
     &_field {
       width: 100%;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: $text-color-secondary;
       padding: 0.25em 0;
       border: none;
@@ -41,8 +43,8 @@ $text-color-primary: #0d2e5e;
       position: absolute;
       right: 0%;
       top: 50%;
-      font-size: 2rem;
-      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      transform: translate(0%, -50%);
     }
   }
 

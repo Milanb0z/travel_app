@@ -7,6 +7,8 @@ import Sidebar from "./components/sidebar/sidebar.js";
 import Error0verlay from "./components/errorOverlay/error0verlay.js";
 import "./App.scss";
 
+import design from "./assets/test.png";
+
 const App = () => {
   const [pins, setPins] = useState([]);
   const [coords, setCoords] = useState({});
@@ -32,6 +34,8 @@ const App = () => {
     }
   }, []);
 
+  // Fetchimg Pins on Start
+
   useEffect(() => {
     if (!bounds) {
       return;
@@ -41,6 +45,7 @@ const App = () => {
       .then((data) => {
         setPins(data);
         setIsLoading(false);
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -57,6 +62,7 @@ const App = () => {
 
   return (
     <section className="main">
+      <img src={design} alt="" className="mainOverlay" />
       <AnimatePresence>
         {isError && (
           <Error0verlay setIsError={setIsError} message={isError.message} />

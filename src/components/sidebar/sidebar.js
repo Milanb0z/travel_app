@@ -9,7 +9,9 @@ import "./sidebar.scss";
 const Sidebar = ({ places = [], isloading, onLocationSelect, selectedPin }) => {
   return (
     <div className="nav">
-      <AnimatePresence>{selectedPin && <SidebarDetails />}</AnimatePresence>
+      <AnimatePresence>
+        {selectedPin && <SidebarDetails place={selectedPin} />}
+      </AnimatePresence>
 
       <div className="nav-header">
         <BiArrowToRight className="nav-header_icon" />
