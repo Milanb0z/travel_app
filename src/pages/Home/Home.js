@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getPlacesData } from "../../api/index";
 
 import classes from "./Home.module.scss";
+import Sidebar from "components/Sidebar/Sidebar";
 
 const Home = () => {
   const [pins, setPins] = useState([]);
@@ -54,9 +55,18 @@ const Home = () => {
     setSelectedPin(place);
   };
 
-  return null;
-
   return (
+    <section className={classes.wrapper}>
+      <Sidebar />
+    </section>
+  );
+};
+
+export default Home;
+
+/**
+ * 
+ *   return (
     <section className="main">
       <Map
         setCoords={setCoords}
@@ -72,6 +82,5 @@ const Home = () => {
       />
     </section>
   );
-};
 
-export default Home;
+ */

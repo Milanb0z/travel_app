@@ -1,0 +1,27 @@
+.nav {
+  padding: 3em 1em;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  &_item {
+    width: 3em;
+    height: 3em;
+    display: grid;
+    place-content: center;
+    border-radius: 0.4em;
+    transition: background 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(100, 255, 255, 0.216);
+    }
+
+    img {
+      width: 1em;
+    }
+  }
+}

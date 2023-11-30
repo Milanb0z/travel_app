@@ -1,56 +1,28 @@
-import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
-import { AnimatePresence } from "framer-motion";
+import React from "react";
+import classes from "./Sidebar.module.scss";
 
-import LoadingSpinner from "../loadingSpinner/loadingSpinner";
-import SidebarDetails from "./sidebarDetails/sidebarDetails";
-import SidebarItem from "./sidebarItem/sidebarItem";
-import "./sidebar.scss";
+// Icons
 
-const Sidebar = ({ places = [], isloading, onLocationSelect, selectedPin }) => {
+import ProfileIcon from "../../assets/icons/profile.svg";
+
+const Sidebar = () => {
   return (
-    <div className="nav">
-      <AnimatePresence>
-        {selectedPin && <SidebarDetails place={selectedPin} />}
-      </AnimatePresence>
-
-      <div className="nav-header">
-        <BiArrowToRight className="nav-header_icon" />
-        <h2 className="nav-header_title">traveller</h2>
-        <BiInfoCircle className="nav-header_icon" />
-      </div>
-      <div className="nav-search">
-        <form>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="nav-search_field"
-          />
-          <BiSearch className="nav-search_icon" />
-        </form>
-      </div>
-      <div className="nav-filter">filter me daddy</div>
-      {isloading ? (
-        <div className="nav-loading">
-          <LoadingSpinner />
-        </div>
-      ) : (
-        <div className="nav-list">
-          {places.length === 0 ? (
-            <div className="nav-loading">
-              <h2>No results :(</h2>
-            </div>
-          ) : (
-            places.map((place, index) => (
-              <SidebarItem
-                onClick={onLocationSelect}
-                data={place}
-                key={`${index}sideitem${place.location_id}`}
-              />
-            ))
-          )}
-        </div>
-      )}
-    </div>
+    <nav className={classes.nav}>
+      <ul className={classes.links}>
+        <li className={classes.links_item}>
+          <img src={ProfileIcon} alt="Profile" />
+        </li>
+        <li className={classes.links_item}>
+          <img src={ProfileIcon} alt="Profile" />
+        </li>
+        <li className={classes.links_item}>
+          <img src={ProfileIcon} alt="Profile" />
+        </li>
+        <li className={classes.links_item}>
+          <img src={ProfileIcon} alt="Profile" />
+        </li>
+      </ul>
+    </nav>
   );
 };
 
