@@ -1,7 +1,8 @@
-import "./marker.scss";
+import React from "react";
+import classes from "./Marker.module.scss";
 
-const marker = ({ isHidden, data }) => {
-  return <div className={`marker ${isHidden && "hidden"}`}></div>;
+const Marker = () => {
+  return <div>Marker</div>;
 };
 
-export default marker;
+export default Marker;
