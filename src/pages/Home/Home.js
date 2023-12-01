@@ -3,6 +3,8 @@ import { getPlacesData } from "../../api/index";
 
 import classes from "./Home.module.scss";
 import Sidebar from "components/Sidebar/Sidebar";
+import Map from "components/Map/Map";
+import PlaceList from "components/PlaceList/PlaceList";
 
 const Home = () => {
   const [pins, setPins] = useState([]);
@@ -58,6 +60,15 @@ const Home = () => {
   return (
     <section className={classes.wrapper}>
       <Sidebar />
+      <div className={classes.content}>
+        <PlaceList places={pins} isLoading={isLoading} />
+        <Map
+          coords={coords}
+          places={pins}
+          setBounds={setBounds}
+          setCoords={setCoords}
+        />
+      </div>
     </section>
   );
 };
