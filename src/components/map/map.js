@@ -19,7 +19,17 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
           setCoords({ lat: event.center.lat, lng: event.center.lng });
           setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
         }}
-      ></GoogleMapReact>
+      >
+        {places.map((place, index) => (
+          <Marker
+            data={place}
+            key={place.location_id + index}
+            lat={place.latitude}
+            lng={place.longitude}
+            text={place.name}
+          />
+        ))}
+      </GoogleMapReact>
     </div>
   );
 };
