@@ -10,7 +10,6 @@ const Home = () => {
   const [pins, setPins] = useState([]);
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
-  const [isError, setIsError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPin, setSelectedPin] = useState(null);
 
@@ -19,15 +18,8 @@ const Home = () => {
       navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude, longitude } }) => {
           setCoords({ lat: latitude, lng: longitude });
-        },
-        () => {
-          setIsError({ message: "Please you need to enable location" });
         }
       );
-    } else {
-      setIsError({
-        message: "Please choose another browser that support user location",
-      });
     }
   }, []);
 
@@ -46,12 +38,18 @@ const Home = () => {
       })
       .catch((error) => {
         console.error(error);
-        setIsError({
-          message: "Ooops, we have some problems please try again later :(",
-        });
+
         setIsLoading(false);
       });
   }, [bounds]);
+
+  const onGetLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoords({ lat: latitude, lng: longitude });
+      }
+    );
+  };
 
   const onSelectPlace = (place) => {
     setSelectedPin(place);
@@ -61,7 +59,11 @@ const Home = () => {
     <section className={classes.wrapper}>
       <Sidebar />
       <div className={classes.content}>
-        <PlaceList places={pins} isLoading={isLoading} />
+        <PlaceList
+          getLocation={onGetLocation}
+          places={pins}
+          isLoading={isLoading}
+        />
         <Map
           coords={coords}
           places={pins}

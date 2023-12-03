@@ -8,4 +8,8 @@
   justify-content: center;
   gap: 1em;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.3;
+  }
 }

@@ -6,8 +6,9 @@ import { Input, Button, Toggle } from "@ui";
 import PlaceCard from "components/PlaceCard/PlaceCard";
 
 import FilterIcon from "assets/icons/filter.svg";
+import LocationIcon from "assets/icons/get_location.svg";
 
-const PlaceList = ({ places, isLoading }) => {
+const PlaceList = ({ places, isLoading, getLocation }) => {
   const [bool, setbool] = useState(false);
 
   const onChangeClick = () => {
@@ -21,12 +22,17 @@ const PlaceList = ({ places, isLoading }) => {
     <div className={classes.list}>
       <div className={classes.header}>
         <Input placeholder="Search" />
-        <Button icon={FilterIcon}></Button>
+        <Button icon={FilterIcon} />
       </div>
       <div className={classes.filter}>
         <Toggle onClick={onChangeClick} checked={bool}>
           Show Map
         </Toggle>
+        <Button
+          disabled={!navigator.geolocation}
+          icon={LocationIcon}
+          onClick={getLocation}
+        />
       </div>
       <div className={classes.cards}>
         {places.map((place) => (
