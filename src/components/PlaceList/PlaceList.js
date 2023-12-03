@@ -8,9 +8,11 @@ import PlaceCard from "components/PlaceCard/PlaceCard";
 import FilterIcon from "assets/icons/filter.svg";
 import LocationIcon from "assets/icons/get_location.svg";
 import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
+import useInput from "hooks/useInput";
 
 const PlaceList = ({ places, isLoading, getLocation }) => {
   const [bool, setbool] = useState(false);
+  const [search, setSearch] = useInput("kafana");
 
   const onChangeClick = () => {
     console.log("click");
@@ -20,7 +22,7 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
   return (
     <div className={classes.list}>
       <div className={classes.header}>
-        <Input placeholder="Search" />
+        <Input value={search} onChange={setSearch} placeholder="Search" />
         <Button icon={FilterIcon} />
       </div>
       <div className={classes.filter}>
@@ -35,9 +37,15 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
       </div>
       <div className={classes.cards}>
         {isLoading && <LoadingSpinner />}
-        {places.map((place) => (
-          <PlaceCard title={place.name} address={place.address} place={place} />
-        ))}
+        {places
+          .filter(({ name }) => name.toLowerCase().includes(search))
+          .map((place) => (
+            <PlaceCard
+              title={place.name}
+              address={place.address}
+              place={place}
+            />
+          ))}
       </div>
     </div>
   );

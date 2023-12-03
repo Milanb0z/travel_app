@@ -32,9 +32,9 @@ const Home = () => {
     setIsLoading(true);
     getPlacesData(bounds)
       .then((data) => {
-        setPins(data);
+        let filteredData = data.filter(({ name }) => name);
+        setPins(filteredData);
         setIsLoading(false);
-        console.log(data);
       })
       .catch((error) => {
         console.error(error);

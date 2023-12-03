@@ -3,7 +3,7 @@ import classes from "./Sidebar.module.scss";
 
 // Icons
 
-import ProfileIcon from "../../assets/icons/profile.svg";
+import ProfileIcon from "assets/icons/profile.svg";
 import Logo from "assets/logo.svg";
 
 const Sidebar = () => {
