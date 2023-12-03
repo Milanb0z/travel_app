@@ -27,3 +27,30 @@ export const getPlacesData = async (coords) => {
     console.error(error);
   }
 };
+
+export const getPlaceDetails = async (location_id) => {
+  const options = {
+    params: {
+      location_id,
+    },
+    headers: {
+      "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
+      "x-rapidapi-key": process.env.REACT_APP_RAPID_API,
+    },
+  };
+
+  try {
+    const {
+      data: { data },
+    } = await axios.get(
+      "https://travel-advisor.p.rapidapi.com/restaurants/get-details",
+      options
+    );
+
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
