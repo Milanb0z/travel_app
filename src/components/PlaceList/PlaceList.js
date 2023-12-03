@@ -7,6 +7,7 @@ import PlaceCard from "components/PlaceCard/PlaceCard";
 
 import FilterIcon from "assets/icons/filter.svg";
 import LocationIcon from "assets/icons/get_location.svg";
+import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
 const PlaceList = ({ places, isLoading, getLocation }) => {
   const [bool, setbool] = useState(false);
@@ -15,9 +16,7 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
     console.log("click");
     setbool((prev) => !prev);
   };
-  if (isLoading) {
-    return <p>Loading</p>;
-  }
+
   return (
     <div className={classes.list}>
       <div className={classes.header}>
@@ -35,6 +34,7 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
         />
       </div>
       <div className={classes.cards}>
+        {isLoading && <LoadingSpinner />}
         {places.map((place) => (
           <PlaceCard title={place.name} address={place.address} place={place} />
         ))}
