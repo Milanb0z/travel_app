@@ -14,14 +14,15 @@ const PinVariants = {
   },
 };
 
-const Marker = () => {
+const Marker = ({ isHovered }) => {
   return (
     <motion.div
       variants={PinVariants}
       initial="hidden"
       animate="visible"
-      className={classes.marker}
+      className={`${classes.marker} ${isHovered ? classes.hover : ""}`}
     >
+      {isHovered && <span>sd</span>}
       <span>4</span>
     </motion.div>
   );

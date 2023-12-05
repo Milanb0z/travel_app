@@ -17,10 +17,15 @@ const cardVariants = {
   },
 };
 
-const PlaceCard = ({ title, address, stars, place }) => {
+const PlaceCard = ({ title, address, stars, place, onHover, onLeave }) => {
   return (
     <Link to={`/place/${place.location_id}`}>
-      <motion.div variants={cardVariants} className={classes.card}>
+      <motion.div
+        onHoverStart={onHover}
+        onHoverEnd={onLeave}
+        variants={cardVariants}
+        className={classes.card}
+      >
         <div className={classes.card_img}>
           {place.photo ? (
             <img src={place.photo.images.small.url} alt={title} />

@@ -27,7 +27,7 @@ const containerVariants = {
   },
 };
 
-const PlaceList = ({ places, isLoading, getLocation }) => {
+const PlaceList = ({ places, isLoading, getLocation, onPlaceHover, onPlaceLeave }) => {
   const [bool, setbool] = useState(false);
   const [search, setSearch] = useInput("");
 
@@ -52,7 +52,7 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
     );
   } else if (places.length > 0 && filterList().length > 0) {
     content = filterList().map((place) => (
-      <PlaceCard title={place.name} address={place.address} place={place} />
+      <PlaceCard onHover={onPlaceHover.bind(this,place)} onLeave={onPlaceLeave} title={place.name} address={place.address} place={place} />
     ));
   } else {
     content = (

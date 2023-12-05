@@ -6,7 +6,7 @@ import classes from "./Map.module.scss";
 
 import mapStyle from "./MapStyle";
 
-const Map = ({ coords, places, setCoords, setBounds }) => {
+const Map = ({ coords, places, setCoords, setBounds, hoveredPin }) => {
   return (
     <div className={classes.map}>
       <GoogleMapReact
@@ -29,6 +29,7 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
           if (place.name) {
             return (
               <Marker
+                isHovered={hoveredPin && hoveredPin === place.location_id}
                 data={place}
                 key={place.location_id + index}
                 lat={place.latitude}
