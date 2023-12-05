@@ -29,10 +29,11 @@
   }
 }
 .cards {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2em;
   overflow-y: auto;
   padding-bottom: 2em;
   flex: 1;
+  padding-right: 1em;
 }

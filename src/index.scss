@@ -1,5 +1,11 @@
 :root {
   --color-primary: #0091ff;
+  --color-dark: #0c1015;
+  --color-medium: #16202f;
+  --color-light: #39414e;
+
+  --color-heading: #fff;
+  --color-body: #8b9097;
 }
 
 * {
@@ -16,8 +22,9 @@ body {
   min-height: 100vh;
   height: 100%;
   font-size: 1.6rem;
-  color: #333;
-  font-family: "Roboto", sans-serif;
+  color: var(--color-heading);
+  background-color: var(--color-dark);
+  font-family: "Poppins", sans-serif;
 }
 
 section {
@@ -36,10 +43,14 @@ ul {
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 h2 {
-  font-size: 1em;
+  font-size: 1.5em;
+}
+
+p {
+  color: var(--color-body);
 }
 
 ::-webkit-scrollbar {
@@ -48,12 +59,12 @@ h2 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-light);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: var(--color-heading);
   transition: all 0.3s;
 }
 

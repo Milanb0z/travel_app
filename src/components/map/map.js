@@ -26,18 +26,14 @@ const Map = ({ coords, places, setCoords, setBounds, hoveredPin }) => {
         }}
       >
         {places.map((place, index) => {
-          if (place.name) {
-            return (
-              <Marker
-                isHovered={hoveredPin && hoveredPin === place.location_id}
-                data={place}
-                key={place.location_id + index}
-                lat={place.latitude}
-                lng={place.longitude}
-                text={place.name}
-              />
-            );
-          }
+          <Marker
+            isHovered={hoveredPin && hoveredPin === place.location_id}
+            data={place}
+            key={place.location_id + index}
+            lat={place.latitude}
+            lng={place.longitude}
+            text={place.name}
+          />;
         })}
       </GoogleMapReact>
     </div>

@@ -6,6 +6,8 @@ import Rating from "components/Rating/Rating";
 
 import classes from "./PlaceCard.module.scss";
 
+import StarIcon from "assets/icons/star.svg";
+
 const cardVariants = {
   visible: {
     opacity: 1,
@@ -32,11 +34,13 @@ const PlaceCard = ({ title, address, stars, place, onHover, onLeave }) => {
           ) : null}
         </div>
 
-        <div className={classes.card_text}>
+        <div className={classes.text}>
           <h2>{title}</h2>
-          <span>Restaurant</span>
           <p>{address}</p>
-          <Rating num={+place.rating} />
+          <div className={classes.rating}>
+            <img src={StarIcon} alt="" className={classes.rating_icon} />
+            <span className={classes.rating_text}>4.3</span>
+          </div>
         </div>
       </motion.div>
     </Link>
