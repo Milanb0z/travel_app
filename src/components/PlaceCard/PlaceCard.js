@@ -1,12 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
-import Rating from "components/Rating/Rating";
 
 import classes from "./PlaceCard.module.scss";
 
 import StarIcon from "assets/icons/star.svg";
+import RightIcon from "assets/icons/right.svg";
+import HeartIcon from "assets/icons/heart.svg";
+import { Button } from "@ui";
 
 const cardVariants = {
   visible: {
@@ -19,15 +20,15 @@ const cardVariants = {
   },
 };
 
-const PlaceCard = ({ title, address, stars, place, onHover, onLeave }) => {
+const PlaceCard = ({ title, address, place, onHover, onLeave }) => {
+  console.log("Render");
   return (
-    <Link to={`/place/${place.location_id}`}>
-      <motion.div
-        onHoverStart={onHover}
-        onHoverEnd={onLeave}
-        variants={cardVariants}
-        className={classes.card}
-      >
+    <Link
+      onMouseLeave={onLeave}
+      onMouseEnter={onHover}
+      to={`/place/${place.location_id}`}
+    >
+      <motion.div variants={cardVariants} className={classes.card}>
         <div className={classes.card_img}>
           {place.photo ? (
             <img src={place.photo.images.small.url} alt={title} />
@@ -37,6 +38,10 @@ const PlaceCard = ({ title, address, stars, place, onHover, onLeave }) => {
         <div className={classes.text}>
           <h2>{title}</h2>
           <p>{address}</p>
+          <div className={classes.actions}>
+            <Button filled icon={HeartIcon} />
+            <Button filled icon={RightIcon} />
+          </div>
           <div className={classes.rating}>
             <img src={StarIcon} alt="" className={classes.rating_icon} />
             <span className={classes.rating_text}>4.3</span>

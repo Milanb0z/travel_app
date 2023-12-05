@@ -27,7 +27,13 @@ const containerVariants = {
   },
 };
 
-const PlaceList = ({ places, isLoading, getLocation, onPlaceHover, onPlaceLeave }) => {
+const PlaceList = ({
+  places,
+  isLoading,
+  getLocation,
+  onPlaceHover,
+  onPlaceLeave,
+}) => {
   const [bool, setbool] = useState(false);
   const [search, setSearch] = useInput("");
 
@@ -40,28 +46,6 @@ const PlaceList = ({ places, isLoading, getLocation, onPlaceHover, onPlaceLeave 
     setbool((prev) => !prev);
   };
 
-  let content = null;
-
-  if (isLoading) {
-    content = <LoadingSpinner />;
-  } else if (places.length === 0) {
-    content = (
-      <div className={classes.message}>
-        <p>No places found in this area. Please try resizig map.</p>
-      </div>
-    );
-  } else if (places.length > 0 && filterList().length > 0) {
-    content = filterList().map((place) => (
-      <PlaceCard onHover={onPlaceHover.bind(this,place)} onLeave={onPlaceLeave} title={place.name} address={place.address} place={place} />
-    ));
-  } else {
-    content = (
-      <div className={classes.message}>
-        <p>No places found for phrase "{search}". Please try another phrase.</p>
-      </div>
-    );
-  }
-
   return (
     <div className={classes.list}>
       <div className={classes.header}>
@@ -70,21 +54,23 @@ const PlaceList = ({ places, isLoading, getLocation, onPlaceHover, onPlaceLeave 
           onChange={setSearch}
           placeholder="Filter Places"
         />
-        <Button icon={FilterIcon} />
+        <Button onClick={onChangeClick} icon={FilterIcon} />
       </div>
-      <div className={classes.filter}>
-        <div className={classes.filter_left}>
-          <p>{places.length} Results</p>
+      {bool && (
+        <div className={classes.filter}>
+          <div className={classes.filter_left}>
+            <p>{places.length} Results</p>
+          </div>
+          <Toggle onClick={onChangeClick} checked={bool}>
+            Show Map
+          </Toggle>
+          <Button
+            disabled={!navigator.geolocation}
+            icon={LocationIcon}
+            onClick={getLocation}
+          />
         </div>
-        <Toggle onClick={onChangeClick} checked={bool}>
-          Show Map
-        </Toggle>
-        <Button
-          disabled={!navigator.geolocation}
-          icon={LocationIcon}
-          onClick={getLocation}
-        />
-      </div>
+      )}
       <motion.div
         variants={containerVariants}
         initial="initial"
@@ -92,7 +78,26 @@ const PlaceList = ({ places, isLoading, getLocation, onPlaceHover, onPlaceLeave 
         className={classes.cards}
         transition={{ staggerChildren: 0.3, delayChildren: 1 }}
       >
-        {content}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : places.length > 0 && filterList().length > 0 ? (
+          filterList().map((place) => (
+            <PlaceCard
+              key={place.location_id}
+              onHover={null}
+              onLeave={null}
+              title={place.name}
+              address={place.address}
+              place={place}
+            />
+          ))
+        ) : (
+          <div className={classes.message}>
+            <p>
+              No places found for phrase "{search}". Please try another phrase.
+            </p>
+          </div>
+        )}
       </motion.div>
     </div>
   );

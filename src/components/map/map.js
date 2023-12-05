@@ -25,7 +25,7 @@ const Map = ({ coords, places, setCoords, setBounds, hoveredPin }) => {
           setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
         }}
       >
-        {places.map((place, index) => {
+        {places.map((place, index) => (
           <Marker
             isHovered={hoveredPin && hoveredPin === place.location_id}
             data={place}
@@ -33,8 +33,8 @@ const Map = ({ coords, places, setCoords, setBounds, hoveredPin }) => {
             lat={place.latitude}
             lng={place.longitude}
             text={place.name}
-          />;
-        })}
+          />
+        ))}
       </GoogleMapReact>
     </div>
   );

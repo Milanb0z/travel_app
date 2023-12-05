@@ -13,3 +13,23 @@
     opacity: 0.3;
   }
 }
+
+.btnIcon {
+  width: 4em;
+  height: 4em;
+  border: 2px solid var(--color-light);
+  border-radius: 1em;
+  background-color: var(--color-medium);
+  display: grid;
+  place-content: center;
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.fill {
+  background-color: var(--color-dark);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}

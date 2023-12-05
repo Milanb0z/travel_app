@@ -17,6 +17,9 @@
 
 .message {
   text-align: center;
+  display: grid;
+  place-content: center;
+  grid-column: span 3;
 }
 
 .filter {
@@ -33,7 +36,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2em;
   overflow-y: auto;
-  padding-bottom: 2em;
   flex: 1;
-  padding-right: 1em;
+  padding-right: 0.5em;
 }
