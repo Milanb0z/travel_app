@@ -1,9 +1,26 @@
 .marker {
-  width: 1em;
-  height: 1em;
-  background-color: rgb(255, 255, 255);
-  border: 2px solid blue;
-  border-radius: 50%;
+  width: 5em;
+  height: 3em;
+  background-color: red;
+
+  display: grid;
+  place-content: center;
+  color: #fff;
+  border-radius: 1em;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: red;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: polygon(100% 0%, 0% 0%, 50% 100%);
+  }
 
   &:hover {
   }

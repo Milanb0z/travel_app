@@ -7,9 +7,13 @@ import HalfStarIcon from "assets/icons/star_half.svg";
 import EmptyStarIcon from "assets/icons/star_empty.svg";
 
 const Rating = ({ num }) => {
-  const icons = [StarIcon, StarIcon, StarIcon, HalfStarIcon, EmptyStarIcon];
-
-  useEffect(() => {}, [num]);
+  const icons = [
+    EmptyStarIcon,
+    EmptyStarIcon,
+    EmptyStarIcon,
+    EmptyStarIcon,
+    EmptyStarIcon,
+  ];
 
   return (
     <div className={classes.stars}>

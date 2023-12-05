@@ -1,14 +1,31 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-import classes from "./PlaceList.module.scss";
+//Hooks
+import useInput from "hooks/useInput";
+
+//Components
 import { Input, Button, Toggle } from "@ui";
-
 import PlaceCard from "components/PlaceCard/PlaceCard";
+import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
+//Icons
 import FilterIcon from "assets/icons/filter.svg";
 import LocationIcon from "assets/icons/get_location.svg";
-import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
-import useInput from "hooks/useInput";
+
+//Styles
+import classes from "./PlaceList.module.scss";
+
+const containerVariants = {
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+  initial: {
+    opacity: 0,
+    x: -20,
+  },
+};
 
 const PlaceList = ({ places, isLoading, getLocation }) => {
   const [bool, setbool] = useState(false);
@@ -48,10 +65,17 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
   return (
     <div className={classes.list}>
       <div className={classes.header}>
-        <Input value={search} onChange={setSearch} placeholder="Search" />
+        <Input
+          value={search}
+          onChange={setSearch}
+          placeholder="Filter Places"
+        />
         <Button icon={FilterIcon} />
       </div>
       <div className={classes.filter}>
+        <div className={classes.filter_left}>
+          <p>{places.length} Results</p>
+        </div>
         <Toggle onClick={onChangeClick} checked={bool}>
           Show Map
         </Toggle>
@@ -61,7 +85,15 @@ const PlaceList = ({ places, isLoading, getLocation }) => {
           onClick={getLocation}
         />
       </div>
-      <div className={classes.cards}>{content}</div>
+      <motion.div
+        variants={containerVariants}
+        initial="initial"
+        animate="visible"
+        className={classes.cards}
+        transition={{ staggerChildren: 0.3, delayChildren: 1 }}
+      >
+        {content}
+      </motion.div>
     </div>
   );
 };

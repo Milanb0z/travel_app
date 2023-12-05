@@ -22,7 +22,7 @@ const Marker = () => {
       animate="visible"
       className={classes.marker}
     >
-      <p>sd</p>
+      <span>4</span>
     </motion.div>
   );
 };

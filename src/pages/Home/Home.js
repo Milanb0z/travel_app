@@ -34,11 +34,11 @@ const Home = () => {
       .then((data) => {
         let filteredData = data.filter(({ name }) => name);
         setPins(filteredData);
+        console.log(filteredData);
         setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
-
         setIsLoading(false);
       });
   }, [bounds]);
@@ -56,22 +56,19 @@ const Home = () => {
   };
 
   return (
-    <section className={classes.wrapper}>
-      <Sidebar />
-      <div className={classes.content}>
-        <PlaceList
-          getLocation={onGetLocation}
-          places={pins}
-          isLoading={isLoading}
-        />
-        <Map
-          coords={coords}
-          places={pins}
-          setBounds={setBounds}
-          setCoords={setCoords}
-        />
-      </div>
-    </section>
+    <div className={classes.content}>
+      <PlaceList
+        getLocation={onGetLocation}
+        places={pins}
+        isLoading={isLoading}
+      />
+      <Map
+        coords={coords}
+        places={pins}
+        setBounds={setBounds}
+        setCoords={setCoords}
+      />
+    </div>
   );
 };
 

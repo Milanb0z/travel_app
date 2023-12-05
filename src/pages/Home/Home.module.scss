@@ -1,11 +1,9 @@
-.wrapper {
-  display: flex;
-}
 .content {
   flex: 1;
   display: flex;
   gap: 2em;
   padding: 2em;
+  height: 100%;
 
   & > * {
     flex: 1;
