@@ -21,10 +21,7 @@ const Marker = ({ isHovered }) => {
       initial="hidden"
       animate="visible"
       className={`${classes.marker} ${isHovered ? classes.hover : ""}`}
-    >
-      {isHovered && <span>sd</span>}
-      <span>4</span>
-    </motion.div>
+    ></motion.div>
   );
 };
 
