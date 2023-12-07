@@ -36,6 +36,7 @@ const PlaceList = ({
 }) => {
   const [bool, setbool] = useState(false);
   const [search, setSearch] = useInput("");
+  const [clicked, setClicked] = useState(null);
 
   const filterList = () => {
     return places.filter(({ name }) => name.toLowerCase().includes(search));
@@ -83,6 +84,8 @@ const PlaceList = ({
         ) : places.length > 0 && filterList().length > 0 ? (
           filterList().map((place) => (
             <PlaceCard
+              onClickHandler={() => setClicked(place.location_id)}
+              isClicked={place.location_id === clicked}
               key={place.location_id}
               onHover={null}
               onLeave={null}

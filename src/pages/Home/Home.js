@@ -10,7 +10,8 @@ const Home = () => {
   const [coords, setCoords] = useState({});
   const [bounds, setBounds] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [hoveredPin, setHoveredPin] = useState(null);
+
+  const [childClicked, setChildClicked] = useState(null);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -50,14 +51,6 @@ const Home = () => {
     );
   };
 
-  const onHoverEnter = (place) => {
-    setHoveredPin(place);
-  };
-
-  const onHoverLeave = () => {
-    setHoveredPin(null);
-  };
-
   return (
     <div className={classes.content}>
       <PlaceList
@@ -68,7 +61,6 @@ const Home = () => {
         isLoading={isLoading}
       />
       <Map
-        hoveredPin={hoveredPin?.location_id}
         coords={coords}
         places={pins}
         setBounds={setBounds}
