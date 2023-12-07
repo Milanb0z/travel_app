@@ -1,0 +1,16 @@
+.hours {
+  h3 {
+    padding-bottom: 1em;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  &_item {
+    display: flex;
+    gap: 1em;
+  }
+}
