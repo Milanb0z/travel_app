@@ -47,36 +47,45 @@ const PlaceDetails = () => {
           <div className={classes.grid}>
             <img src={place.photo.images.original.url} alt={place.name} />
           </div>
-          <div className={classes.text}>
-            <div className={classes.header}>
-              <div className={classes.header_text}>
-                <h1>{place.name}</h1>
-                <p>{place.ranking}</p>
+          {/** Scrollable Text Starts Here Here */}
+          <div className={classes.wrapper}>
+            <div className={classes.text}>
+              <div className={classes.header}>
+                <div className={classes.header_text}>
+                  <h1>{place.name}</h1>
+                  <p>{place.ranking}</p>
 
-                <span>{place.is_closed ? "Closed Now" : "Open Now"}</span>
+                  <span>{place.is_closed ? "Closed Now" : "Open Now"}</span>
+                </div>
+                <div className={classes.rating}>
+                  <img src={StarIcon} alt="" className={classes.rating_icon} />
+                  <span className={classes.rating_text}>{place.rating}</span>
+                </div>
               </div>
-              <div className={classes.rating}>
-                <img src={StarIcon} alt="" className={classes.rating_icon} />
-                <span className={classes.rating_text}>{place.rating}</span>
+              <div className={classes.address}>
+                <p>{place.address}</p>
               </div>
-            </div>
-            <div className={classes.address}>
-              <p>{place.address}</p>
-            </div>
-            <div className={classes.details}>
-              <p>{place.description}</p>
-            </div>
-
-            <WorkingHours hours={place.hours.week_ranges} />
-            <RatingDetails ratings={Object.values(place.rating_histogram)} />
-            <div className={classes.actions}>
-              <Button icon={TripAdvisorIcon} />
-              <Button icon={LinkIcon} />
+              <div className={classes.details}>
+                <p>{place.description}</p>
+              </div>
+              <WorkingHours hours={place.hours.week_ranges} />
+              <RatingDetails ratings={Object.values(place.rating_histogram)} />
+              <div className={classes.actions}>
+                <Button icon={TripAdvisorIcon} />
+                <Button icon={LinkIcon} />
+              </div>
             </div>
           </div>
+          {/** Scrollable Text Ends Here Here */}
+          <div className={classes.progress_bar}></div>
         </div>
-
-        <div className={classes.map}></div>
+        {/** Map Starts Here */}
+        <div className={classes.map}>
+          <Map
+            coords={{ lat: place.latitude, lng: place.longitude }}
+            places={[place]}
+          />
+        </div>
       </section>
     );
   }
