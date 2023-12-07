@@ -20,35 +20,35 @@ const cardVariants = {
   },
 };
 
-const PlaceCard = ({ title, address, place, onHover, onLeave }) => {
-  console.log("Render");
+const PlaceCard = ({ title, address, place, isClicked, onClickHandler }) => {
+  console.log(isClicked);
   return (
-    <Link
-      onMouseLeave={onLeave}
-      onMouseEnter={onHover}
-      to={`/place/${place.location_id}`}
+    <motion.div
+      onClick={onClickHandler}
+      variants={cardVariants}
+      className={classes.card}
     >
-      <motion.div variants={cardVariants} className={classes.card}>
-        <div className={classes.card_img}>
-          {place.photo ? (
-            <img src={place.photo.images.small.url} alt={title} />
-          ) : null}
-        </div>
+      <div className={classes.card_img}>
+        {place.photo ? (
+          <img src={place.photo.images.small.url} alt={title} />
+        ) : null}
+      </div>
 
-        <div className={classes.text}>
-          <h2>{title}</h2>
-          <p>{address}</p>
-          <div className={classes.actions}>
-            <Button filled icon={HeartIcon} />
-            <Button filled icon={RightIcon} />
-          </div>
-          <div className={classes.rating}>
-            <img src={StarIcon} alt="" className={classes.rating_icon} />
-            <span className={classes.rating_text}>4.3</span>
-          </div>
+      <div className={classes.text}>
+        <h2>{title}</h2>
+        <p>{address}</p>
+        <div className={classes.rating}>
+          <img src={StarIcon} alt="" className={classes.rating_icon} />
+          <span className={classes.rating_text}>4.3</span>
         </div>
-      </motion.div>
-    </Link>
+        <div className={classes.actions}>
+          <Button filled icon={HeartIcon} />
+          <Link to={`/place/${place.location_id}`}>
+            <Button filled icon={RightIcon} />
+          </Link>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
