@@ -29,9 +29,12 @@ export const getPlacesData = async (coords) => {
 };
 
 export const getPlaceDetails = async (location_id) => {
+  console.log(location_id);
   const options = {
     params: {
       location_id,
+      currency: "USD",
+      lang: "en_US",
     },
     headers: {
       "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
@@ -40,9 +43,7 @@ export const getPlaceDetails = async (location_id) => {
   };
 
   try {
-    const {
-      data: { data },
-    } = await axios.get(
+    const { data } = await axios.get(
       "https://travel-advisor.p.rapidapi.com/restaurants/get-details",
       options
     );
