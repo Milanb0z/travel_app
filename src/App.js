@@ -3,7 +3,7 @@ import React from "react";
 import "./App.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, NotFound, PlaceDetails } from "pages";
+import { Error, Home, NotFound, PlaceDetails } from "pages";
 import Dashboard from "pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
@@ -28,7 +28,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <Error>
+      <RouterProvider router={router} />
+    </Error>
+  );
 };
 
 export default App;
