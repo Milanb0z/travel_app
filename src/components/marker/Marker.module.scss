@@ -1,0 +1,35 @@
+.marker {
+  width: 3em;
+  height: 3em;
+  background-color: red;
+  border-radius: 50% 50% 0 50%;
+  rotate: 45deg;
+  position: relative;
+  border: 2px solid black;
+}
+
+.marker:before {
+  content: "";
+  display: inline-block;
+  width: 70%;
+  height: 70%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.marker:after {
+  content: "";
+  display: inline-block;
+  width: 30%;
+  height: 30%;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,52 +1,30 @@
-import { BiInfoCircle, BiArrowToRight, BiSearch } from "react-icons/bi";
-import LoadingSpinner from "../loadingSpinner/loadingSpinner";
-import "./sidebar.scss";
-import SidebarDetails from "./sidebarDetails/sidebarDetails";
-import SidebarItem from "./sidebarItem/sidebarItem";
+import React from "react";
+import classes from "./Sidebar.module.scss";
 
-const Sidebar = ({ places = [], isloading, onLocationSelect, selectedPin }) => {
+// Icons
+
+import Logo from "assets/logo.svg";
+
+import MapIcon from "assets/icons/map.svg";
+import { Link } from "react-router-dom";
+
+const Sidebar = () => {
   return (
-    <div className="nav">
-      {selectedPin && <SidebarDetails />}
+    <nav className={classes.nav}>
+      <Link to={"/"}>
+        <div className={classes.logo}>
+          <img src={Logo} alt="" />
+        </div>
+      </Link>
 
-      <div className="nav-header">
-        <BiArrowToRight className="nav-header_icon" />
-        <h2 className="nav-header_title">traveller</h2>
-        <BiInfoCircle className="nav-header_icon" />
-      </div>
-      <div className="nav-search">
-        <form>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="nav-search_field"
-          />
-          <BiSearch className="nav-search_icon" />
-        </form>
-      </div>
-      <div className="nav-filter">filter me daddy</div>
-      {isloading ? (
-        <div className="nav-loading">
-          <LoadingSpinner />
-        </div>
-      ) : (
-        <div className="nav-list">
-          {places.length === 0 ? (
-            <div className="nav-loading">
-              <h2>No results :(</h2>
-            </div>
-          ) : (
-            places.map((place, index) => (
-              <SidebarItem
-                onClick={onLocationSelect}
-                data={place}
-                key={`${index}sideitem${place.location_id}`}
-              />
-            ))
-          )}
-        </div>
-      )}
-    </div>
+      <ul className={classes.links}>
+        <Link to={"/"}>
+          <li className={classes.links_item}>
+            <img src={MapIcon} alt="Profile" />
+          </li>
+        </Link>
+      </ul>
+    </nav>
   );
 };
 

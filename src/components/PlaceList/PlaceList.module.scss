@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2em;
+}
+
+.header {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+
+  input {
+    flex: 1;
+  }
+}
+
+.message {
+  text-align: center;
+  display: grid;
+  place-content: center;
+  grid-column: span 3;
+}
+
+.filter {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+
+  &_left {
+    margin-right: auto;
+  }
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.5em;
+}

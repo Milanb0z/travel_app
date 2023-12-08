@@ -1,0 +1,10 @@
+.loading {
+  flex: 1;
+  display: grid;
+  place-content: center;
+
+  img {
+    width: 70%;
+    max-width: 20em;
+  }
+}

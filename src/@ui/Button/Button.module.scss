@@ -1,0 +1,38 @@
+.btn {
+  padding: 1em;
+  border: 2px solid var(--color-light);
+  border-radius: 1em;
+  background-color: var(--color-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.btnIcon {
+  width: 4em;
+  height: 4em;
+  border: 2px solid var(--color-light);
+  border-radius: 1em;
+  background-color: var(--color-medium);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+
+  img {
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+.fill {
+  background-color: var(--color-dark);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
