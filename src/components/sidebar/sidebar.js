@@ -3,7 +3,6 @@ import classes from "./Sidebar.module.scss";
 
 // Icons
 
-import ProfileIcon from "assets/icons/profile.svg";
 import Logo from "assets/logo.svg";
 
 import MapIcon from "assets/icons/map.svg";

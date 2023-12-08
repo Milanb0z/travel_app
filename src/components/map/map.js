@@ -6,7 +6,7 @@ import classes from "./Map.module.scss";
 
 import mapStyle from "./MapStyle";
 
-const Map = ({ coords, places, setCoords, setBounds }) => {
+const Map = ({ coords, places, setCoords, setBounds, viewMode }) => {
   return (
     <div className={classes.map}>
       <GoogleMapReact
@@ -21,6 +21,9 @@ const Map = ({ coords, places, setCoords, setBounds }) => {
         defaultZoom={10}
         margin={[50, 50, 50, 50]}
         onChange={(event) => {
+          if (viewMode) {
+            return;
+          }
           setCoords({ lat: event.center.lat, lng: event.center.lng });
           setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
         }}

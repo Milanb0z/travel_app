@@ -1,14 +1,14 @@
 .content {
   flex: 1;
+  width: 100%;
   display: flex;
   padding: 2em;
   gap: 2em;
-  overflow: auto;
 }
 
 .map {
   flex: 1;
-  background-color: red;
+  background-color: blue;
 }
 
 .details {
@@ -46,7 +46,7 @@
   left: 0;
   width: 100%;
   display: block;
-  background-color: red;
+  background-color: #fff;
   height: 2px;
   z-index: 200;
   transform: scaleX(0.4);

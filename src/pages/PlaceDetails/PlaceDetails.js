@@ -84,6 +84,7 @@ const PlaceDetails = () => {
           <Map
             coords={{ lat: place.latitude, lng: place.longitude }}
             places={[place]}
+            viewMode
           />
         </div>
       </section>
@@ -94,5 +95,3 @@ const PlaceDetails = () => {
 };
 
 export default PlaceDetails;
-
-//<img src={place.photo.images.original.url} alt={place.name} />;

@@ -11,8 +11,6 @@ const Home = () => {
   const [bounds, setBounds] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [childClicked, setChildClicked] = useState(null);
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
