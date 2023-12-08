@@ -7,6 +7,14 @@
   border-right: 1px solid var(--color-light);
 }
 
+.logo {
+  width: 3em;
+  height: auto;
+
+  img {
+    width: 100%;
+  }
+}
 .links {
   display: flex;
   flex-direction: column;
